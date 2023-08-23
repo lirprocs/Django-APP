@@ -3,5 +3,5 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def blockrain_game(request):
+def tic_tac_toe_view(request):
     return render(request, 'game/game.html')
