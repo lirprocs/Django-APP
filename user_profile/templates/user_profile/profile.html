@@ -1,0 +1,61 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            {% if user.profile.image %}
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="float: left; margin-right: 10px; width: 100px; height: 100px;">
+            {% else %}
+                <img class="rounded-circle account-img" src="{% static 'avatar.png' %}" style="float: left; margin-right: 10px; width: 100px; height: 100px;">
+            {% endif %}
+            <div class="media-body">
+                {% if user.profile.nickname %}
+                    <h2 class="account-heading">{{ user.profile.nickname }}</h2>
+                {% else %}
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                {% endif %}
+                 <p class="text-secondary" style="margin-bottom: 2px;">{{ user.username }}</p>
+                {% if user.profile.email %}
+                    <p class="text-secondary">{{ user.profile.email }}</p>
+                {% else %}
+                    <p class="text-secondary">{{ user.email }}</p>
+                {% endif %}
+            </div>
+            <div class="ml-auto">
+                <style>
+                    .btn-transparent {
+                        background-color: transparent;
+                        color: #0D6EFD;
+                        border: 2px solid #0D6EFD;
+                        padding:5px 12px;
+                        transition: background-color 0.3s ease;
+                    }
+
+                    .btn-transparent:hover {
+                        background-color: #0D6EFD;
+                        color: white;
+                    }
+                </style>
+                <a href="{% url 'redprofile' %}" class="btn btn-transparent">Изменить</a>
+                <a href="{% url 'delete_account' %}" class="btn btn-danger">Удалить аккаунт</a>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">О вас</legend>
+            <div class="form-group">
+                <label for="first_name">Имя:</label>
+                <p id="first_name">{{ user.profile.first_name }}</p>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Фамилия:</label>
+                <p id="last_name">{{ user.profile.last_name }}</p>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Номер телефона:</label>
+                <p id="phone_number">{{ user.profile.phone_number }}</p>
+            </div>
+        </fieldset>
+    </div>
+{% endblock content %}

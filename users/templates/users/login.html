@@ -1,0 +1,67 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block style %}
+<style>
+  .login-form {
+    max-width: 300px; /* задаем максимальную ширину формы */
+    margin: 0 auto; /* устанавливаем автоматические отступы слева и справа для центрирования */
+    margin-top: 125px; /* задаем отступ сверху */
+  }
+
+  .login-form .image-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .login-form img {
+    display: block; /* устанавливаем отображение элемента как блочный */
+    margin: 0 auto; /* задаем автоматические отступы по горизонтали для центрирования */
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto; /* передвигаем изображение вправо */
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<form class="login-form" method="post">
+    {% csrf_token %}
+    <div class="image-container">
+      <img src="{% static 'Замок.svg' %}" alt="Lirprocs" style="display: block; margin: 0 auto;">
+    </div>
+    <h1 class="h3 mb-3 fw-normal">Please login in</h1>
+
+    <!-- Выводим сообщение об ошибке -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    <!-- Выводим сообщение об ошибке -->
+
+    <div class="form-floating">
+      <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username">
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" name="remember_me" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-2 mb-3 text-body-secondary">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    <p class="mt-3 mb-3 text-body-secondary">© 2017–2023</p>
+</form>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block style %}
+<style>
+  .register-form {
+    max-width: 300px; /* задаем максимальную ширину формы */
+    margin: 0 auto; /* устанавливаем автоматические отступы слева и справа для центрирования */
+    margin-top: 125px; /* задаем отступ сверху */
+  }
+
+  .register-form .image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .register-form img {
+    display: block; /* устанавливаем отображение элемента как блочный */
+    margin: 0 auto; /* задаем автоматические отступы по горизонтали для центрирования */
+    max-width: 100%;
+    max-height: 100%;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <form class="register-form" method="post">
+    {% csrf_token %}
+    <div class="image-container">
+      <img src="{% static 'reg.svg' %}" alt="Lirprocs" style="display: block; margin: 0 auto;">
+    </div>
+    <h1 class="h3 mb-3 fw-normal">Please register</h1>
+
+    <!-- Выводим сообщение об ошибке -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    <!-- Выводим сообщение об ошибке -->
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingNickname" name="nickname" placeholder="Nickmane" maxlength="20">
+      <label for="floatingNickname">Username</label>
+    </div>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPasswordConfirm" name="password_confirm" placeholder="Confirm Password">
+      <label for="floatingPasswordConfirm">Confirm Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    <p class="mt-2 mb-3 text-body-secondary">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    <p class="mt-3 mb-3 text-body-secondary">© 2017–2023</p>
+  </form>
+{% endblock %}
