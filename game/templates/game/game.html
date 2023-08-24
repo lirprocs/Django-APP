@@ -15,10 +15,10 @@
 			width: 100px;
 			height: 100px;
 			display: table-cell;
-			background-color: tan;
+			background-color: #8cbad2;
 			font: bold 60px comic sans ms;
 			text-align: center;
-			color: green;
+			color: #0a0a0a;
 		}
 	</style>
 
@@ -75,40 +75,46 @@ var concat = function(a, b, c){
 	}
 }
 
-var changeColorAndStop = function(a, b, c){
-	arrData[a].style.color = "red"
-	arrData[b].style.color = "red"
-	arrData[c].style.color = "red"
+var changeColorAndStop = function(a, b, c, result){
+    if (result === "xxx") {
+        arrData[a].style.color = "green";
+        arrData[b].style.color = "green";
+        arrData[c].style.color = "green";
+    } else if (result === "ooo") {
+        arrData[a].style.color = "red";
+        arrData[b].style.color = "red";
+        arrData[c].style.color = "red";
+    }
 
-	stop = true
+    stop = true;
 }
 
 var checkWin = function(){
-	for (var i = 0; i < 3; i++){
-		var result = concat(i, i + 3, i + 6)
+    for (var i = 0; i < 3; i++) {
+        var result = concat(i, i + 3, i + 6);
 
-		if (result === "xxx" || result === "ooo"){
-			changeColorAndStop(i, i + 3, i + 6)
-		}
-	}
+        if (result === "xxx" || result === "ooo") {
+            changeColorAndStop(i, i + 3, i + 6, result);
+        }
+    }
 
-	for (var i = 0; i <= 6; i +=3){
-		var result = concat(i, i + 1, i + 2)
+    for (var i = 0; i <= 6; i += 3) {
+        var result = concat(i, i + 1, i + 2);
 
-		if (result === "xxx" || result === "ooo"){
-			changeColorAndStop(i, i + 1, i + 2)
-		}
-	}
+        if (result === "xxx" || result === "ooo") {
+            changeColorAndStop(i, i + 1, i + 2, result);
+        }
+    }
 
-	result = concat(0, 4, 8)
-	if (result === "xxx" || result === "ooo"){
-		changeColorAndStop(0, 4, 8)
-	}
+    result = concat(0, 4, 8);
+    if (result === "xxx" || result === "ooo") {
+        changeColorAndStop(0, 4, 8, result);
+    }
 
-	result = concat(2, 4, 6)
-	if (result === "xxx" || result === "ooo"){
-		changeColorAndStop(2, 4, 6)
-	}
+    result = concat(2, 4, 6);
+    if (result === "xxx" || result === "ooo") {
+        changeColorAndStop(2, 4, 6, result);
+    }
 }
 
 var botZero = function(){
@@ -206,7 +212,7 @@ addEventListener("click", function(event){
 
 		arrData.forEach(element => {
 			element.innerHTML = ""
-			element.style.color = "green"
+			element.style.color = "black"
 		})
 
 		stop = false
