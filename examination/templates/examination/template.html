@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Code</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'process_code' %}">
+        {% csrf_token %}
+        <label for="class_level_select">Select Class Level:</label>
+        <select name="class_level" id="class_level_select" required>
+            <option value="" disabled selected>Select class level</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <!-- Добавьте остальные классы по аналогии -->
+        </select>
+        <button type="submit">Generate Access Code</button>
+    </form>
+</body>
+
+{% endblock %}

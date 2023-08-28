@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Code Display</title>
+    <style>
+        /* Стиль для кнопки копирования */
+        .copy-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <p>Your access code is: <span id="access-code">{{ access_code }}</span></p>
+    <p>Share this code with the users who need to take the test.</p>
+    <!-- Кнопка для копирования кода доступа -->
+    <button class="copy-button" onclick="copyAccessCode()">Copy Code</button>
+
+    <script>
+        // Функция для копирования кода доступа в буфер обмена
+        function copyAccessCode() {
+            var accessCode = document.getElementById('access-code');
+            var tempInput = document.createElement('input');
+            tempInput.value = accessCode.innerText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Access code copied to clipboard: ' + accessCode.innerText);
+        }
+    </script>
+</body>
+</html>
+
+{% endblock %}

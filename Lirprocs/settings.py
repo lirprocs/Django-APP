@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'game',
     'user_profile',
     'crispy_forms',
+    'examination',
 ]
 
 MIDDLEWARE = [
