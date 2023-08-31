@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Access Code</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'enter_code' %}">
+        {% csrf_token %}
+        <label for="access_code">Enter Access Code:</label>
+        <input type="text" name="access_code" id="access_code" required>
+        <button type="submit">Start Test</button>
+    </form>
+</body>
+
+{% endblock %}

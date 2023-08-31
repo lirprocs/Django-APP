@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
+    task_type = models.IntegerField(default=0)
     answer = models.CharField(max_length=100)
     clas = models.IntegerField()
 

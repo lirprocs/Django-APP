@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Test</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'submit_test' %}">
+        {% csrf_token %}
+        {% for question in questions %}
+            <label for="question_{{ question.id }}">{{ question.question_text }}</label>
+            <input type="text" name="question_{{ question.id }}" id="question_{{ question.id }}" required><br>
+        {% endfor %}
+        <button type="submit">Submit Test</button>
+    </form>
+</body>
+
+{% endblock %}
